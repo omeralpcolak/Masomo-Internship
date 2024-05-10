@@ -1,1 +1,10 @@
 # Masomo-Internship
+
+There will be an internship project in this repo.
+
+My weekly reports: 
+
+Week 1 Report :[Week1 Report.pdf](https://github.com/omeralpcolak/Masomo-Internship/files/15276064/Week1.Report.pdf)
+
+Week 2 Report : [Week2 Report.pdf](https://github.com/omeralpcolak/Masomo-Internship/files/15276069/Week2.Report.pdf)
+
