@@ -528,6 +528,8 @@ MonoBehaviour:
   fadeScreen: {fileID: 1161310726}
   music: {fileID: 8300000, guid: 129eb18a92c4640f58d2e28459188c93, type: 3}
   fadeDuration: 2
+  levelConfigs:
+  - {fileID: 11400000, guid: 7c972e7d8d87a4af0ba6cfda180f8d12, type: 2}
   levelContent: {fileID: 1917535432}
   levelButtons:
   - {fileID: 6864778998235344392, guid: 7b1bcf5398dd7461bb731708e899a853, type: 3}
@@ -554,6 +556,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5313119144105720517, guid: 8addb8c80419c41cf9798ccebf092663, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5813125717977336455, guid: 8addb8c80419c41cf9798ccebf092663, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -890,7 +896,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 573572297}
   - {fileID: 1144958105}
-  - {fileID: 1161310725}
   - {fileID: 498099918}
+  - {fileID: 1161310725}
   - {fileID: 1831188368}
   - {fileID: 1818894970}

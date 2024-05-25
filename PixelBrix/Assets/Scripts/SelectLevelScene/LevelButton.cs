@@ -7,16 +7,24 @@ using DG.Tweening;
 
 public class LevelButtonController : MonoBehaviour
 {
-    public string levelName;
-    public Sprite levelSprite;
+    public LevelConfig levelConfig;
     [HideInInspector] public Button levelButton;
     [HideInInspector] public float scaleUpDuration = 1f;
+    private TMP_Text levelText;
     
     void Start()
     {
         levelButton = GetComponent<Button>();
-        levelButton.GetComponentInChildren<TMP_Text>().text = levelName;
-        levelButton.image.sprite = levelSprite;
-        transform.DOScale(1, scaleUpDuration);
+        levelText = GetComponentInChildren<TMP_Text>();
+        transform.localScale = Vector3.zero;
+        levelText.transform.localScale = Vector3.zero;
+        SetUpConfig();
+        transform.DOScale(1, scaleUpDuration).OnComplete(() => levelText.transform.DOScale(1, scaleUpDuration));
+    }
+
+    private void SetUpConfig()
+    {
+        levelButton.GetComponentInChildren<TMP_Text>().text = levelConfig.text;
+        levelButton.image.sprite = levelConfig.sprite;
     }
 }

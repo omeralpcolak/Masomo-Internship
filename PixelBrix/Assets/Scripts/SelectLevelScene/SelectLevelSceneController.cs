@@ -6,6 +6,7 @@ using System.Linq;
 
 public class SelectLevelSceneController : SceneController
 {
+    public List<LevelConfig> levelConfigs;
     public Transform levelContent;
     public List<LevelButtonController> levelButtons;
 
@@ -23,13 +24,16 @@ public class SelectLevelSceneController : SceneController
 
     private IEnumerator CreateLevelButtons()
     {
+        List<LevelButtonController> createdLevelButtons = new List<LevelButtonController>();
         yield return new WaitForSeconds(1f);
         for(int i = 0; i < levelButtons.Count; i++)
         {
-            Instantiate(levelButtons[i], levelContent.transform);
+            LevelButtonController levelButtonIns =Instantiate(levelButtons[i], levelContent.transform);
+            levelButtonIns.levelConfig = levelConfigs[i];
+            createdLevelButtons.Add(levelButtonIns);
             yield return levelButtons[i].scaleUpDuration;
         }
-        //levelButtons.ForEach(x => x.levelButton.interactable = true);
+        createdLevelButtons.ForEach(x => x.levelButton.interactable = true);
     }
 
 
