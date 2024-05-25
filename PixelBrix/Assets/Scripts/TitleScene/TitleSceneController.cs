@@ -20,18 +20,15 @@ public class TitleSceneController : SceneController
     public void OnClickPlayButton()
     {
         playButton.interactable = false;
-        OnSceneChange(SceneType.TITLE);
+        OnSceneChange(SceneType.SELECTLEVEL);
     }
 
 
     protected override void FadeIn()
     {
-        titleTxt.transform.DOScale(0, 1f).OnComplete(() =>
+        titleTxt.transform.DOScale(1, 1f).OnComplete(() =>
         {
-            playTxt.transform.DOScale(0, 1f).OnComplete(() =>
-            {
-                playButton.interactable = true;
-            });
+            playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
         });
     }
 
@@ -39,10 +36,7 @@ public class TitleSceneController : SceneController
     {
         titleTxt.transform.DOScale(0, 1f).OnStart(() =>
         {
-            playTxt.transform.DOScale(0, 1f).OnComplete(() =>
-            {
-                playButton.interactable = true;
-            });
+            playTxt.transform.DOScale(0, 1f).OnComplete(() => playButton.interactable = true);
         });
     }
 

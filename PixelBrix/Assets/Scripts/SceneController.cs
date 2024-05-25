@@ -6,8 +6,6 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System;
 
-
-
 public enum SceneType
 {
     TITLE,
@@ -26,11 +24,11 @@ public class SceneController : MonoBehaviour
 
     public void SetUpComponents(SceneController _sceneController)
     {
-        audioSource = _sceneController.GetComponent<AudioSource>();
         if (audioSource == null)
         {
-           audioSource = _sceneController.gameObject.AddComponent<AudioSource>();
+            audioSource = _sceneController.gameObject.AddComponent<AudioSource>();
         }
+        audioSource = _sceneController.GetComponent<AudioSource>();
         audioSource.clip = music;
         audioSource.volume = 0;
         audioSource.playOnAwake = true;
@@ -42,10 +40,7 @@ public class SceneController : MonoBehaviour
         audioSource.Play();
         audioSource.DOFade(1, fadeDuration).OnStart(() =>
         {
-            fadeScreen.DOFade(0, fadeDuration).OnStart(() =>
-            {
-                FadeIn();
-            });
+            fadeScreen.DOFade(0, fadeDuration).OnStart(() => FadeIn());
         });
     }
 
@@ -54,11 +49,7 @@ public class SceneController : MonoBehaviour
         fadeScreen.DOFade(1, fadeDuration).OnStart(() =>
         {
             FadeOut();
-            audioSource.DOFade(0, fadeDuration).OnComplete(() =>
-            {
-                ChangeScene(sceneType);
-            });
-
+            audioSource.DOFade(0, fadeDuration).OnComplete(() => ChangeScene(sceneType));
         });
     }
 
@@ -79,15 +70,6 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    protected virtual void FadeIn()
-    {
-
-    }
-
-    protected virtual void FadeOut()
-    {
-
-    }
-
-
+    protected virtual void FadeIn() { }
+    protected virtual void FadeOut() { }
 }
