@@ -41,6 +41,7 @@ public class LevelButtonPanel : MonoBehaviour
                 yield return new WaitForSeconds(createdLevelButtons[i].scaleUpDuration);
             }
             yield return new WaitForSeconds(.5f);
+            createdLevelButtons.ForEach(x => x.levelButton.interactable = true);
             OnActivateLevelButtons();
         }
     }
