@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LevelButtonPanel : MonoBehaviour
 {
     public List<LevelConfig> levelConfigs;
     public LevelButtonController levelButtonController;
     public List<LevelButtonController> createdLevelButtons;
-
+    public static Action OnActivateLevelButtons;
 
     private void Start()
     {
@@ -39,6 +40,8 @@ public class LevelButtonPanel : MonoBehaviour
                 createdLevelButtons[i].InsAnim();
                 yield return new WaitForSeconds(createdLevelButtons[i].scaleUpDuration);
             }
+            yield return new WaitForSeconds(.5f);
+            OnActivateLevelButtons();
         }
     }
 
