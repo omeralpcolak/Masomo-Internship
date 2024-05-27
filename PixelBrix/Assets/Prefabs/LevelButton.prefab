@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRINCE
+  m_text: TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: beb5c2ba17cf143f78d2202fe7d5bc6b, type: 2}
   m_sharedMaterial: {fileID: 7116859239365416927, guid: beb5c2ba17cf143f78d2202fe7d5bc6b, type: 2}
@@ -231,7 +231,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -255,7 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3197932556711154868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6864778998235344392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,3 +283,4 @@ MonoBehaviour:
   levelConfig: {fileID: 0}
   levelButton: {fileID: 0}
   scaleUpDuration: 1
+  owner: {fileID: 0}

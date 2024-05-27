@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97c02e78190c943b3964391c8f0f744d, type: 3}
-  m_Name: PrinceConfig
+  m_Name: QueenConfig
   m_EditorClassIdentifier: 
-  text: Prince
-  sprite: {fileID: 21300000, guid: f60695584ef3946ba8ba4eca6fafaac9, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 4958ca80cae5c49f6b375a6f5392f34a, type: 3}
+  text: Queen
+  sprite: {fileID: 21300000, guid: 373c146065a7949f5876e69bb16b9a79, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2ea02efc577974dd8b14f9f25640468f, type: 3}
