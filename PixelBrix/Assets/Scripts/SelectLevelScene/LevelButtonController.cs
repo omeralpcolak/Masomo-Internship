@@ -22,8 +22,7 @@ public class LevelButtonController : MonoBehaviour
         owner = _owner; 
         button = GetComponent<Button>();
         levelText = GetComponentInChildren<TMP_Text>();
-        levelText.transform.localScale = Vector3.zero;
-        levelText.text = levelConfig.text;
+        levelText.text = "";
         button.image.sprite = levelConfig.idleSprite;
     }
 
@@ -34,7 +33,13 @@ public class LevelButtonController : MonoBehaviour
 
     public void InsAnim()
     {
-        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() => levelText.transform.DOScale(1f, scaleUpDuration));
+        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() =>
+        {
+            levelText.text = levelConfig.text;
+            TextAnim.instance.WriteOnebyOne(levelText);
+            //levelText.transform.DOScale(1f, scaleUpDuration);
+        });
+
     }
 
     public void OnButtonSelected()

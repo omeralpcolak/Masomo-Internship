@@ -14,5 +14,8 @@ public class LevelConfig : ScriptableObject
         get => PlayerPrefs.GetInt("IsLevelCompleted", 0) == 1;
         set => PlayerPrefs.SetInt("IsLevelCompleted", value ? 1 : 0);
     }
+
+    public List<GameObject> levels;
+
     public bool isItFirstLevel;
 }

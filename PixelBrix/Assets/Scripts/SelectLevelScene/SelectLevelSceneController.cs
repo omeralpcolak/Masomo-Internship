@@ -24,10 +24,8 @@ public class SelectLevelSceneController : SceneController
 
     protected override void FadeIn()
     {
-        text.transform.DOScale(1, 1f).OnComplete(() =>
-        {
-            OnFadeIn();
-        });
+        TextAnim.instance.WriteOnebyOne(text);
+        OnFadeIn();
         
     }
 

@@ -26,10 +26,12 @@ public class TitleSceneController : SceneController
 
     protected override void FadeIn()
     {
-        titleTxt.transform.DOScale(1, 1f).OnComplete(() =>
+        /*titleTxt.transform.DOScale(1, 1f).OnComplete(() =>
         {
-            playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
-        });
+            
+        });*/
+        TextAnim.instance.WriteOnebyOne(titleTxt);
+        playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
     }
 
     protected override void FadeOut()
