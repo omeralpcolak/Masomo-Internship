@@ -36,7 +36,7 @@ public class TitleSceneController : SceneController
     {
         titleTxt.transform.DOScale(0, 1f).OnStart(() =>
         {
-            playTxt.transform.DOScale(0, 1f).OnComplete(() => playButton.interactable = true);
+            playTxt.transform.DOScale(0, 1f).OnComplete(() => playButton.interactable = false);
         });
     }
 

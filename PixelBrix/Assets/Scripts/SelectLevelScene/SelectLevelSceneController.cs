@@ -9,14 +9,16 @@ using UnityEngine.UI;
 public class SelectLevelSceneController : SceneController
 {
     public static Action OnFadeIn;
+    public static Action OnFadeOut;
     public TMP_Text text;
     public Button playButton;
+    public Button quitButton;
 
     private void Start()
     {
         SetUpComponents(this);
         OnSceneLoad();
-        LevelButtonPanel.OnActivateLevelButtons += ActivatePlayButton;
+        LevelButtonPanel.OnActivateLevelButtons += ActivateMenuButtons;
     }
 
 
@@ -29,17 +31,36 @@ public class SelectLevelSceneController : SceneController
         
     }
 
+    protected override void FadeOut()
+    {
+        OnFadeOut();
+        playButton.interactable = false;
+        quitButton.interactable = false;
+
+    }
+
     public void OnClickPlayButton()
     {
-
+        OnSceneChange(SceneType.GAME);
     }
 
-    private void ActivatePlayButton()
+    public void OnClickQuitButton()
+    {
+        Application.Quit();
+    }
+
+    private void ActivateMenuButtons()
     {
         playButton.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
+        quitButton.transform.DOScale(1, 1f).OnComplete(() => quitButton.interactable = true);
     }
 
-    
+    private void OnDisable()
+    {
+        LevelButtonPanel.OnActivateLevelButtons -= ActivateMenuButtons;
+    }
+
+
 
 
 }

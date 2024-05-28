@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: PrinceConfig
   m_EditorClassIdentifier: 
   text: Prince
-  sprite: {fileID: 21300000, guid: f60695584ef3946ba8ba4eca6fafaac9, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 4958ca80cae5c49f6b375a6f5392f34a, type: 3}
+  idleSprite: {fileID: 21300000, guid: f60695584ef3946ba8ba4eca6fafaac9, type: 3}
+  angrySprite: {fileID: 21300000, guid: 4958ca80cae5c49f6b375a6f5392f34a, type: 3}
+  evilSprite: {fileID: 21300000, guid: def933d3b43754ef096590443f6e161f, type: 3}
+  isItFirstLevel: 1
