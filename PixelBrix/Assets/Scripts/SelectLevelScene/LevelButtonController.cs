@@ -8,40 +8,51 @@ using DG.Tweening;
 public class LevelButtonController : MonoBehaviour
 {
     public LevelConfig levelConfig;
-    [HideInInspector] public Button levelButton;
     [HideInInspector] public float scaleUpDuration = 1f;
-    private TMP_Text levelText;
+    [HideInInspector] public Button button;
     [HideInInspector] public LevelButtonPanel owner;
+    private TMP_Text levelText;
+    public TMP_Text lockedTxt;
+    public bool selected;
+
 
     public void SetUpConfig(LevelButtonPanel _owner)
     {
-        //Scale
         transform.localScale = Vector3.zero;  
-
-        //Owner panel is attached.
         owner = _owner; 
-
-        //Getting Components
-        levelButton = GetComponent<Button>();
+        button = GetComponent<Button>();
         levelText = GetComponentInChildren<TMP_Text>();
-
-        //Setting up the configs
         levelText.transform.localScale = Vector3.zero;
         levelText.text = levelConfig.text;
-        levelButton.image.sprite = levelConfig.sprite;
-        SpriteState spriteState = levelButton.spriteState;
-        spriteState.selectedSprite = levelConfig.selectedSprite;
-        levelButton.spriteState = spriteState;
+        button.image.sprite = levelConfig.idleSprite;
+    }
+
+    public void CheckInteractable()
+    {
+        button.interactable = levelConfig.isItFirstLevel || levelConfig.isLevelCompleted ? true : false;
     }
 
     public void InsAnim()
     {
-        
         transform.DOScale(1.5f, scaleUpDuration).OnComplete(() => levelText.transform.DOScale(1f, scaleUpDuration));
     }
 
-    public void OnClick()
+    public void OnButtonSelected()
     {
-
+        selected = true;
+        button.image.sprite = levelConfig.evilSprite;
+        Animator textAnim = levelText.GetComponent<Animator>();
+        textAnim.SetBool("isSelected", true);
+        owner.CheckSelectedStateOfButtons(this);
     }
+
+    public void OnButtonDeselected()
+    {
+        selected = false;
+        button.image.sprite = levelConfig.idleSprite;
+        Animator textAnim = levelText.GetComponent<Animator>();
+        textAnim.SetBool("isSelected", false);
+    }
+
+   
 }
