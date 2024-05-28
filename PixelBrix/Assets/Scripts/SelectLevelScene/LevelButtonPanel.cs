@@ -10,6 +10,7 @@ public class LevelButtonPanel : MonoBehaviour
     public List<LevelButtonController> createdLevelButtons;
     public static Action OnActivateLevelButtons;
     public static Action OnSelectButton;
+    public GameManager gameManager;
 
     private void Start()
     {

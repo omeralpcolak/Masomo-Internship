@@ -13,6 +13,7 @@ public class SelectLevelSceneController : SceneController
     public TMP_Text text;
     public Button playButton;
     public Button quitButton;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class SelectLevelSceneController : SceneController
 
     protected override void FadeIn()
     {
-        TextAnim.instance.WriteOnebyOne(text);
+        text.gameObject.SetActive(true);
         OnFadeIn();
         
     }
@@ -39,7 +40,8 @@ public class SelectLevelSceneController : SceneController
 
     public void OnClickPlayButton()
     {
-        OnSceneChange(SceneType.GAME);
+        if(gameManager.selectedLevel != null) { OnSceneChange(SceneType.GAME); }
+        
     }
 
     public void OnClickQuitButton()

@@ -30,7 +30,7 @@ public class TitleSceneController : SceneController
         {
             
         });*/
-        TextAnim.instance.WriteOnebyOne(titleTxt);
+        titleTxt.gameObject.SetActive(true);
         playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
     }
 

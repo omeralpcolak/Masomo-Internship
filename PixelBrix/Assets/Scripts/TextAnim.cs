@@ -10,22 +10,16 @@ public class TextAnim : MonoBehaviour
     private string fullText;
     private TMP_Text dialogue;
 
-
-    private void Awake()
+    private void Start()
     {
-        instance = this;
-    }
-
-    public  void WriteOnebyOne(TMP_Text dialogue)
-    {
-        StartCoroutine(AnimRtn(dialogue));
-    }
-
-    private IEnumerator AnimRtn(TMP_Text dialogue)
-    {
+        dialogue = GetComponent<TMP_Text>();
         fullText = dialogue.text;
         dialogue.text = "";
+        StartCoroutine(WriteOnByOne());
+    }
 
+    private IEnumerator WriteOnByOne()
+    {
         foreach (char c in fullText)
         {
             dialogue.text += c;

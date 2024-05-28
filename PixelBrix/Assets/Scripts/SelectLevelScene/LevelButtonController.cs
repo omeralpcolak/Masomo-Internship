@@ -22,7 +22,8 @@ public class LevelButtonController : MonoBehaviour
         owner = _owner; 
         button = GetComponent<Button>();
         levelText = GetComponentInChildren<TMP_Text>();
-        levelText.text = "";
+        levelText.text = levelConfig.text;
+        levelText.gameObject.SetActive(false);
         button.image.sprite = levelConfig.idleSprite;
     }
 
@@ -33,13 +34,7 @@ public class LevelButtonController : MonoBehaviour
 
     public void InsAnim()
     {
-        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() =>
-        {
-            levelText.text = levelConfig.text;
-            TextAnim.instance.WriteOnebyOne(levelText);
-            //levelText.transform.DOScale(1f, scaleUpDuration);
-        });
-
+        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() => levelText.gameObject.SetActive(true));
     }
 
     public void OnButtonSelected()
@@ -48,6 +43,7 @@ public class LevelButtonController : MonoBehaviour
         button.image.sprite = levelConfig.evilSprite;
         Animator textAnim = levelText.GetComponent<Animator>();
         textAnim.SetBool("isSelected", true);
+        owner.gameManager.selectedLevel = levelConfig;
         owner.CheckSelectedStateOfButtons(this);
     }
 
