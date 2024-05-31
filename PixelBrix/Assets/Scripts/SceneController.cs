@@ -18,6 +18,7 @@ public class SceneController : MonoBehaviour
     public CanvasGroup fadeScreen;
     protected AudioSource audioSource;
     public AudioClip music;
+    public float volume;
 
     [SerializeField]protected float fadeDuration = 2f;
 
@@ -38,7 +39,7 @@ public class SceneController : MonoBehaviour
     protected void OnSceneLoad()
     {
         audioSource.Play();
-        audioSource.DOFade(1, fadeDuration).OnStart(() =>
+        audioSource.DOFade(volume, fadeDuration).OnStart(() =>
         {
             fadeScreen.DOFade(0, fadeDuration).OnStart(() => FadeIn());
         });
