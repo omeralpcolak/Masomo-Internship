@@ -26,10 +26,6 @@ public class TitleSceneController : SceneController
 
     protected override void FadeIn()
     {
-        /*titleTxt.transform.DOScale(1, 1f).OnComplete(() =>
-        {
-            
-        });*/
         titleTxt.gameObject.SetActive(true);
         playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
     }

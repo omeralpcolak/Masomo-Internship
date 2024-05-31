@@ -608,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 647446224}
   music: {fileID: 8300000, guid: 36027286576af42ff8a79fc9710306de, type: 3}
+  volume: 1
   fadeDuration: 2
   titleTxt: {fileID: 1992727969}
   playTxt: {fileID: 122115339}
