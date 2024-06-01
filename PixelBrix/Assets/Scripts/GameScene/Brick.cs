@@ -16,7 +16,6 @@ public class Brick : MonoBehaviour
         transform.parent = null;
         finalPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.parent = owner.transform;
-        owner.OnWaveAnim += Move;
         
 
     }
@@ -44,7 +43,7 @@ public class Brick : MonoBehaviour
 
     private void OnDestroy()
     {
-        owner.OnWaveAnim -= Move;
+        
     }
 
 

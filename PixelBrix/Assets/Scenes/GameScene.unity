@@ -471,7 +471,7 @@ MonoBehaviour:
   volume: 0
   fadeDuration: 2
   manager: {fileID: 11400000, guid: 723839535c47f4be4a69bdc1d1e1a1eb, type: 2}
-  characterLevel: {fileID: 0}
+  characterLevel: {fileID: 11400000, guid: 7c972e7d8d87a4af0ba6cfda180f8d12, type: 2}
   characterImg: {fileID: 479323201}
   dialogueTxt: {fileID: 303655852}
   dialoguePanel: {fileID: 1162155575}

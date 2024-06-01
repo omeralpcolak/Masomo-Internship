@@ -27,7 +27,7 @@ public class GameSceneController : SceneController
         SetUpComponents(this);
         OnSceneLoad();
         characterLevel = manager.selectedLevel;
-        TextAnim.OnAnimEnd += DeactivateDialoguePanel;
+        WaveController.OnWaveAnimEnd += DeactivateDialoguePanel;
     }
 
     protected override void FadeIn()
@@ -50,24 +50,25 @@ public class GameSceneController : SceneController
 
     public void ActivateDialoguePanel(DialogueStyle style)
     {
+        switch (style)
+        {
+            case DialogueStyle.INITIAL:
+                characterImg.sprite = characterLevel.idleSprite;
+                dialogueTxt.text = characterLevel.dialogues[0];
+                break;
+            case DialogueStyle.WIN:
+                characterImg.sprite = characterLevel.evilSprite;
+                dialogueTxt.text = characterLevel.dialogues[1];
+                break;
+            case DialogueStyle.DEFEATED:
+                characterImg.sprite = characterLevel.angrySprite;
+                dialogueTxt.text = characterLevel.dialogues[2];
+                break;
+        }
         dialoguePanel.gameObject.SetActive(true);
         dialoguePanel.GetComponent<CanvasGroup>().DOFade(1, 1f).OnComplete(() =>
         {
-            switch (style)
-            {
-                case DialogueStyle.INITIAL:
-                    characterImg.sprite = characterLevel.idleSprite;
-                    dialogueTxt.text = characterLevel.dialogues[0];
-                    break;
-                case DialogueStyle.WIN:
-                    characterImg.sprite = characterLevel.evilSprite;
-                    dialogueTxt.text = characterLevel.dialogues[1];
-                    break;
-                case DialogueStyle.DEFEATED:
-                    characterImg.sprite = characterLevel.angrySprite;
-                    dialogueTxt.text = characterLevel.dialogues[2];
-                    break;
-            }
+            
             dialogueTxt.gameObject.SetActive(true);
         });
         

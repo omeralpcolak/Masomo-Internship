@@ -6,7 +6,7 @@ public class WaveController : MonoBehaviour
 {
     public int hp;
     public List<Brick> bricks;
-    public Action OnWaveAnim;
+    public static Action OnWaveAnimEnd;
 
     public void SetUpWave()
     {
@@ -25,6 +25,8 @@ public class WaveController : MonoBehaviour
                 brick.Move();
                 yield return new WaitForSeconds(0.3f);
             }
+            OnWaveAnimEnd();
+            
         }
         
     }
