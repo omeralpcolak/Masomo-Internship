@@ -10,6 +10,8 @@ public class TextAnim : MonoBehaviour
     public static TextAnim instance;
     private string fullText;
     private TMP_Text dialogue;
+    public static Action<bool> OnDialogue;
+    public float waitDuration;
 
     private void OnEnable()
     {
@@ -21,11 +23,14 @@ public class TextAnim : MonoBehaviour
 
     private IEnumerator WriteOnByOne()
     {
+        OnDialogue?.Invoke(true);
+        
         foreach (char c in fullText)
         {
             dialogue.text += c;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(waitDuration);
         }
 
+        OnDialogue?.Invoke(false);
     }
 }
