@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
         InsTheWave();
     }
 
-    public void InsTheWave()
+    private void InsTheWave()
     {
         CurrentWave.CreateTheWave(transform);
     }
