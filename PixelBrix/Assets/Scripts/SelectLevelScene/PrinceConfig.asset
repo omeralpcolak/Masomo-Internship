@@ -17,8 +17,8 @@ MonoBehaviour:
   angrySprite: {fileID: 21300000, guid: 4958ca80cae5c49f6b375a6f5392f34a, type: 3}
   evilSprite: {fileID: 21300000, guid: def933d3b43754ef096590443f6e161f, type: 3}
   dialogues:
-  - Hello there! Bla Bla Bla Bla
+  - Hmm... As a prince I offended that you are my opponent!
   - I WON!!!
-  waves:
-  - {fileID: 1279442013895323851, guid: 3e4be554566de42c09e92fb86c5c1b48, type: 3}
+  - AHHH!!! HOW..!!?!
+  levelManager: {fileID: 4217543807716484235, guid: 548cb5c544122467291ea3a3bf58f311, type: 3}
   isItFirstLevel: 1

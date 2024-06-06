@@ -8,10 +8,17 @@ public class Brick : MonoBehaviour
     [HideInInspector]public WaveController owner;
     public Vector3 finalPos;
     private BoxCollider2D col;
+    public List<Sprite> sprites;
+    private int index;
+    public Sprite currentSprite => sprites[index];
+    private SpriteRenderer spRenderer;
+    private int hitCount = 0;
 
     public void Init(WaveController _owner)
     {
         gameObject.SetActive(true);
+        spRenderer = GetComponentInChildren<SpriteRenderer>();
+        SetSprite();
         col = GetComponent<BoxCollider2D>();
         owner = _owner;
         owner.hp += 1;
@@ -20,20 +27,36 @@ public class Brick : MonoBehaviour
         transform.parent = owner.transform;
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            col.enabled = false;
-            FindAnyObjectByType<LevelManager>().CheckEligiableForNextLevel(owner.hp);
-            //InsantiateEffect;
-            Destroy(gameObject);
+            owner.ShakeTheBricks();
+            hitCount++;
+            if (hitCount >= sprites.Count)
+            {
+                col.enabled = false;
+                owner.hp -= 1;
+                FindAnyObjectByType<LevelManager>().CheckEligiableForNextLevel(owner.hp);
+                //InsantiateEffect;
+                Destroy(gameObject);
+            }
+            else
+            {
+                index++;
+                SetSprite();
+            }
         }
+    }
+
+    private void SetSprite()
+    {
+        spRenderer.sprite = currentSprite;
     }
 
     private void OnDestroy()
     {
-        owner.hp -= 1;
         Debug.Log(name + " " + owner.hp);
     }
 

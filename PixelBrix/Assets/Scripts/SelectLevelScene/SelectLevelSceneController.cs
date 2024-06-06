@@ -13,7 +13,6 @@ public class SelectLevelSceneController : SceneController
     public TMP_Text text;
     public Button playButton;
     public Button quitButton;
-    public GameManager gameManager;
 
     private void Start()
     {
@@ -22,15 +21,23 @@ public class SelectLevelSceneController : SceneController
         LevelButtonPanel.OnActivateLevelButtons += ActivateMenuButtons;
     }
 
+    private void OnDestroy()
+    {
+        LevelButtonPanel.OnActivateLevelButtons -= ActivateMenuButtons;
 
-    protected override void FadeIn()
+    }
+
+
+    protected override void DuringFadeIn()
     {
         text.gameObject.SetActive(true);
+        text.GetComponent<TextAnim>().SetTheText();
+        GameData.selectedLevel = null;
         OnFadeIn();
         
     }
 
-    protected override void FadeOut()
+    protected override void DuringFadeOut()
     {
         OnFadeOut();
         playButton.interactable = false;
@@ -40,7 +47,7 @@ public class SelectLevelSceneController : SceneController
 
     public void OnClickPlayButton()
     {
-        if(gameManager.selectedLevel != null) { OnSceneChange(SceneType.GAME); }
+        if(GameData.selectedLevel != null) { OnSceneChange(SceneType.GAME); }
         
     }
 
@@ -55,10 +62,7 @@ public class SelectLevelSceneController : SceneController
         quitButton.transform.DOScale(1, 1f).OnComplete(() => quitButton.interactable = true);
     }
 
-    private void OnDisable()
-    {
-        LevelButtonPanel.OnActivateLevelButtons -= ActivateMenuButtons;
-    }
+    
 
 
 

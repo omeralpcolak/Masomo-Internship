@@ -7,13 +7,12 @@ using System;
 
 public class TextAnim : MonoBehaviour
 {
-    public static TextAnim instance;
     private string fullText;
     private TMP_Text dialogue;
     public static Action<bool> OnDialogue;
     public float waitDuration;
 
-    private void OnEnable()
+    public void SetTheText()
     {
         dialogue = GetComponent<TMP_Text>();
         fullText = dialogue.text;

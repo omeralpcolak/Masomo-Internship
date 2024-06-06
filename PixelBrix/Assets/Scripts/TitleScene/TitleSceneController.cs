@@ -24,13 +24,14 @@ public class TitleSceneController : SceneController
     }
 
 
-    protected override void FadeIn()
+    protected override void DuringFadeIn()
     {
         titleTxt.gameObject.SetActive(true);
+        titleTxt.GetComponent<TextAnim>().SetTheText();
         playTxt.transform.DOScale(1, 1f).OnComplete(() => playButton.interactable = true);
     }
 
-    protected override void FadeOut()
+    protected override void DuringFadeOut()
     {
         titleTxt.transform.DOScale(0, 1f).OnStart(() =>
         {

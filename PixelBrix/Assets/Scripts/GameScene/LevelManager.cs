@@ -22,9 +22,12 @@ public class LevelManager : MonoBehaviour
     private int index;
     public List<Wave> waves;
     public Wave CurrentWave => waves[index];
+    GameSceneController gameSceneController;
+    public static bool isLevelStart;
 
     private void Start()
     {
+        gameSceneController = GameObject.FindObjectOfType<GameSceneController>();
         index = 0;
         InsTheWave();
     }
@@ -51,8 +54,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            //Player wins
-            //Enemy defated.
+            isLevelStart = false;
+            gameSceneController.ActivateDialoguePanel(DialogueStyle.DEFEATED);
         }
     }
 }

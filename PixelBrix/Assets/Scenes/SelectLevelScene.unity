@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 279614598}
   - component: {fileID: 279614599}
   m_Layer: 5
-  m_Name: SelectTxt
+  m_Name: SelectTitleTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403801afd7d174f2191ea761a07c1877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitDuration: 0.1
 --- !u!1 &498099916
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +969,6 @@ MonoBehaviour:
   text: {fileID: 279614596}
   playButton: {fileID: 66444029}
   quitButton: {fileID: 1751303948}
-  gameManager: {fileID: 11400000, guid: 723839535c47f4be4a69bdc1d1e1a1eb, type: 2}
 --- !u!4 &1144958105
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,7 +1618,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0018f5078266b44bf9f1f88901eb3199, type: 2}
   levelButtonController: {fileID: 6864778998235344392, guid: 7b1bcf5398dd7461bb731708e899a853, type: 3}
   createdLevelButtons: []
-  gameManager: {fileID: 11400000, guid: 723839535c47f4be4a69bdc1d1e1a1eb, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

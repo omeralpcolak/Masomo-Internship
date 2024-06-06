@@ -34,7 +34,11 @@ public class LevelButtonController : MonoBehaviour
 
     public void InsAnim()
     {
-        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() => levelText.gameObject.SetActive(true));
+        transform.DOScale(1.5f, scaleUpDuration).OnComplete(() =>
+        {
+            levelText.gameObject.SetActive(true);
+            levelText.GetComponent<TextAnim>().SetTheText();
+        });
     }
 
     public void OnButtonSelected()
@@ -43,7 +47,7 @@ public class LevelButtonController : MonoBehaviour
         button.image.sprite = levelConfig.evilSprite;
         Animator textAnim = levelText.GetComponent<Animator>();
         textAnim.SetBool("isSelected", true);
-        owner.gameManager.selectedLevel = levelConfig;
+        GameData.selectedLevel = levelConfig;
         owner.CheckSelectedStateOfButtons(this);
     }
 

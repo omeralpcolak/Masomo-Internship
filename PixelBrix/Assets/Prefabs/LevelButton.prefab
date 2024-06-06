@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1005554094613681466}
   - component: {fileID: 465777890075847956}
   - component: {fileID: 3281549501794643716}
-  - component: {fileID: 5622706784327255556}
+  - component: {fileID: 9155357603222824737}
   m_Layer: 5
   m_Name: LevelNameTxt
   m_TagString: Untagged
@@ -157,7 +157,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5622706784327255556
+--- !u!114 &9155357603222824737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403801afd7d174f2191ea761a07c1877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitDuration: 0.15
 --- !u!1 &7413079685393377721
 GameObject:
   m_ObjectHideFlags: 0

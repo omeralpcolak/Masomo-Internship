@@ -8,7 +8,6 @@ public class LevelButtonPanel : MonoBehaviour
     public List<LevelConfig> levelConfigs;
     public LevelButtonController levelButtonController;
     public List<LevelButtonController> createdLevelButtons;
-    public GameManager gameManager;
     public static Action OnActivateLevelButtons;
     public static Action OnSelectButton;
 
@@ -21,7 +20,7 @@ public class LevelButtonPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log(name + "is called OnDestroy");
+        //Debug.Log(name + " is called OnDestroy");
         SelectLevelSceneController.OnFadeIn -= ActivateLevelButtons;
         SelectLevelSceneController.OnFadeOut -= MakeTheButtonsNoInteractable;
     }

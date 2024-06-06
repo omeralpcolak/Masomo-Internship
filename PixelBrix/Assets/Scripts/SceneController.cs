@@ -41,7 +41,7 @@ public class SceneController : MonoBehaviour
         audioSource.Play();
         audioSource.DOFade(volume, fadeDuration).OnStart(() =>
         {
-            fadeScreen.DOFade(0, fadeDuration).OnStart(() => FadeIn());
+            fadeScreen.DOFade(0, fadeDuration).OnStart(() => DuringFadeIn());
         });
     }
 
@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
     {
         fadeScreen.DOFade(1, fadeDuration).OnStart(() =>
         {
-            FadeOut();
+            DuringFadeOut();
             audioSource.DOFade(0, fadeDuration).OnComplete(() => ChangeScene(sceneType));
         });
     }
@@ -71,6 +71,6 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    protected virtual void FadeIn() { }
-    protected virtual void FadeOut() { }
+    protected virtual void DuringFadeIn() { }
+    protected virtual void DuringFadeOut() { }
 }
