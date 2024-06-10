@@ -58,6 +58,7 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("BottomBorder"))
         {
             LevelManager.OnLevelComplete?.Invoke(false);
+            LevelManager.isLevelStart = false;
         }
     }
     public void Init(PaddleController _owner)

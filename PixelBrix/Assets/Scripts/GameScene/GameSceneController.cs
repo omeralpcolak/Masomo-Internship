@@ -33,6 +33,7 @@ public class GameSceneController : SceneController
     public Button startButton;
     public PaddleController paddlePrefab;
     private PaddleController paddle;
+    public GameObject levelCompletePanel;
 
 
     void Start()
@@ -69,14 +70,23 @@ public class GameSceneController : SceneController
 
     private void LoseOrWin(bool _bool)
     {
+        levelCompletePanel.gameObject.SetActive(true);
+        TMP_Text levelCompleteText = levelCompletePanel.GetComponentInChildren<TMP_Text>();
         if (_bool)
         {
             ActivateDialoguePanel(DialogueStyle.DEFEATED);
+            levelCompleteText.color = Color.green;
+            levelCompleteText.text = "VICTORY";
+            
         }
         else
         {
             ActivateDialoguePanel(DialogueStyle.WIN);
+            levelCompleteText.color = Color.red;
+            levelCompleteText.text = "DEFEAT";
         }
+
+        levelCompleteText.GetComponent<TextAnim>().SetTheText();
 
     }
 
