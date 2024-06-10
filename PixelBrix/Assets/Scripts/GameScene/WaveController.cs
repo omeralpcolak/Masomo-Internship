@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using System.Linq;
+
 public class WaveController : MonoBehaviour
 {
     public int hp;
@@ -41,8 +42,7 @@ public class WaveController : MonoBehaviour
                 }
                 
                 yield return new WaitForSeconds(0.2f);
-            }
-            //OnWaveCreating?.Invoke(false);
+            }            
         }
         
     }

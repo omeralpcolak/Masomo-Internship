@@ -47,13 +47,20 @@ public class SelectLevelSceneController : SceneController
 
     public void OnClickPlayButton()
     {
-        if(GameData.selectedLevel != null) { OnSceneChange(SceneType.GAME); }
+        if(GameData.selectedLevel != null)
+        {   
+            OnSceneChange(SceneType.GAME);
+            SoundEffectManager.instance.PlaySoundEffect("buttonSound", 0.2f);
+        }
         
     }
 
     public void OnClickQuitButton()
     {
-        Application.Quit();
+        playButton.interactable = false;
+        quitButton.interactable = false;
+        SoundEffectManager.instance.PlaySoundEffect("buttonSound", 0.2f);
+        fadeScreen.GetComponent<CanvasGroup>().DOFade(1f, 1f).OnComplete(() => Application.Quit());
     }
 
     private void ActivateMenuButtons()

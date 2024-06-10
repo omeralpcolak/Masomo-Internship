@@ -33,6 +33,8 @@ public class GameSceneController : SceneController
     public Button startButton;
     public PaddleController paddlePrefab;
     private PaddleController paddle;
+
+
     void Start()
     {
         SetUpComponents(this);
@@ -43,11 +45,13 @@ public class GameSceneController : SceneController
         Instantiate(characterLevel.levelManager);
         
         TextAnim.OnDialogue += ActivateOrDisableStartButton;
+        LevelManager.OnLevelComplete += LoseOrWin;
     }
 
     private void OnDestroy()
     {
         TextAnim.OnDialogue -= ActivateOrDisableStartButton;
+        LevelManager.OnLevelComplete -= LoseOrWin;
     }
 
     protected override void DuringFadeIn()
@@ -60,9 +64,24 @@ public class GameSceneController : SceneController
         
     }
 
+
+
+
+    private void LoseOrWin(bool _bool)
+    {
+        if (_bool)
+        {
+            ActivateDialoguePanel(DialogueStyle.DEFEATED);
+        }
+        else
+        {
+            ActivateDialoguePanel(DialogueStyle.WIN);
+        }
+
+    }
+
     public void ActivateDialoguePanel(DialogueStyle style)
     {
-        
         switch (style)
         {
             case DialogueStyle.INITIAL:
@@ -84,6 +103,7 @@ public class GameSceneController : SceneController
                 startButton.onClick.AddListener(() => OnSceneChange(SceneType.SELECTLEVEL));
                 break;
         }
+
         dialoguePanel.gameObject.SetActive(true);
         dialoguePanel.GetComponent<CanvasGroup>().DOFade(1, 1f).OnComplete(() =>
         {
@@ -103,7 +123,7 @@ public class GameSceneController : SceneController
             dialogueTxt.gameObject.SetActive(false);
             dialoguePanel.gameObject.SetActive(false);
         });
-        audioSource.volume = 0.4f;
+        audioSource.volume = 0.2f;
     }
 
 

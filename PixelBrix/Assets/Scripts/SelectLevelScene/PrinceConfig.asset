@@ -18,7 +18,7 @@ MonoBehaviour:
   evilSprite: {fileID: 21300000, guid: def933d3b43754ef096590443f6e161f, type: 3}
   dialogues:
   - Hmm... As a prince I offended that you are my opponent!
-  - I WON!!!
-  - AHHH!!! HOW..!!?!
+  - I WON!!! Did you really think you can beat me? HAHAHAHAHAHA
+  - AHHH!!! HOW..!!?! HOW CAN I LOSE TO SOMEONE LIKE YOU!?
   levelManager: {fileID: 4217543807716484235, guid: 548cb5c544122467291ea3a3bf58f311, type: 3}
   isItFirstLevel: 1

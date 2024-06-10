@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSprite: {fileID: 2394809298345634440}
   ownerPaddle: {fileID: 0}
-  collisionEffect: {fileID: 8791802859087666345, guid: ae07f2a45f14a82428409cfe410e6002, type: 3}
+  collisionEffect: {fileID: 7698169178516273621, guid: 3ca0c679b0e354a5fab2adfef3a76136, type: 3}
 --- !u!50 &3577983238529426550
 Rigidbody2D:
   serializedVersion: 4
@@ -60,7 +60,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1098632166168407809}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0

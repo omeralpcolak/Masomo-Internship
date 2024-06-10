@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
+using System;
 
 [System.Serializable]
 public class Wave
@@ -24,6 +25,7 @@ public class LevelManager : MonoBehaviour
     public Wave CurrentWave => waves[index];
     GameSceneController gameSceneController;
     public static bool isLevelStart;
+    public static Action<bool> OnLevelComplete;
 
     private void Start()
     {
@@ -55,7 +57,9 @@ public class LevelManager : MonoBehaviour
         else
         {
             isLevelStart = false;
-            gameSceneController.ActivateDialoguePanel(DialogueStyle.DEFEATED);
+            OnLevelComplete?.Invoke(true);
+            BallController ball = FindAnyObjectByType<BallController>();
+            ball.PositionState(BallPosition.INITIAL);
         }
     }
 }

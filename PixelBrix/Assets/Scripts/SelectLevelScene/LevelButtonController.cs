@@ -12,7 +12,7 @@ public class LevelButtonController : MonoBehaviour
     [HideInInspector] public Button button;
     [HideInInspector] public LevelButtonPanel owner;
     private TMP_Text levelText;
-    public TMP_Text lockedTxt;
+    public Image locked;
     public bool selected;
 
 
@@ -30,6 +30,7 @@ public class LevelButtonController : MonoBehaviour
     public void CheckInteractable()
     {
         button.interactable = levelConfig.isItFirstLevel || levelConfig.isLevelCompleted ? true : false;
+        if (!button.interactable) { locked.gameObject.SetActive(true); }
     }
 
     public void InsAnim()
@@ -44,6 +45,7 @@ public class LevelButtonController : MonoBehaviour
     public void OnButtonSelected()
     {
         selected = true;
+        SoundEffectManager.instance.PlaySoundEffect("buttonSound", 0.2f);
         button.image.sprite = levelConfig.evilSprite;
         Animator textAnim = levelText.GetComponent<Animator>();
         textAnim.SetBool("isSelected", true);

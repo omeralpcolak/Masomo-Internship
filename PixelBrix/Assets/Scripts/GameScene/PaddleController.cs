@@ -14,6 +14,11 @@ public class PaddleController : MonoBehaviour
         ball.Init(this);
         WaveController.OnWaveCreating += HandleBallPosition;
     }
+
+    private void OnDestroy()
+    {
+        WaveController.OnWaveCreating -= HandleBallPosition;
+    }
     void FixedUpdate()
     {  
         if (Input.GetMouseButton(0)&& LevelManager.isLevelStart)
@@ -45,10 +50,7 @@ public class PaddleController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        WaveController.OnWaveCreating -= HandleBallPosition;
-    }
+    
 
 
 }

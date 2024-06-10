@@ -7,9 +7,9 @@ public class CameraShake : MonoBehaviour
     public static CameraShake instance;
     private Vector3 initialPos;
     [SerializeField] private float duration;
-    [SerializeField] private float strength = 0.3f;
-    [SerializeField] private int vibrato = 10;
-    [SerializeField] private float randomness = 90f;
+    [SerializeField] private float strength;
+    [SerializeField] private int vibrato;
+    [SerializeField] private float randomness;
     private bool canShake = true;
 
     private void Awake()
