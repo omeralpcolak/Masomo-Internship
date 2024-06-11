@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     GameSceneController gameSceneController;
     public static bool isLevelStart;
     public static Action<bool> OnLevelComplete;
+    public static Action OnNextWave;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class LevelManager : MonoBehaviour
         index++;
         if(index < waves.Count)
         {
+            OnNextWave?.Invoke();
             InsTheWave();
         }
         else

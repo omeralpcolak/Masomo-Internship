@@ -14,6 +14,7 @@ public class Brick : MonoBehaviour
     public Sprite CurrentSprite => sprites[index];
     private SpriteRenderer spRenderer;
     private int hitCount = 0;
+    public PowerupHolder powerupHolder;
 
     public void Init(WaveController _owner)
     {
@@ -33,17 +34,19 @@ public class Brick : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            
             InstantiateEffects(collision.contacts[0]);
             SoundEffectManager.instance.PlaySoundEffect("ballHit", 0.2f);
             owner.ShakeTheBricks();
             hitCount++;
             if (hitCount >= sprites.Count)
             {
+                CreateThePowerUpHolder();
                 col.enabled = false;
                 owner.hp -= 1;
                 FindAnyObjectByType<LevelManager>().CheckEligiableForNextLevel(owner.hp);
                 spRenderer.transform.DOMoveY(spRenderer.transform.position.y + 0.2f, 0.15f)
-                    .SetEase(Ease.InOutCubic).OnComplete(() => spRenderer.transform.DOScale(0, 0.15f).OnComplete(() => Destroy(gameObject)));
+                    .SetEase(Ease.InOutCubic).OnComplete(() => spRenderer.transform.DOScale(0, 0.15f).OnComplete(() => gameObject.SetActive(false)));
             }
             else
             {
@@ -51,6 +54,16 @@ public class Brick : MonoBehaviour
                 index++;
                 SetSprite();
             }
+        }
+    }
+
+    private void CreateThePowerUpHolder()
+    {
+        int possibility = 10;
+        int number = Random.Range(0, 100);
+        if(number <= possibility)
+        {
+            Instantiate(powerupHolder, transform.position, Quaternion.identity);
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 848676859658554966}
   - component: {fileID: 3577983238529426550}
   - component: {fileID: 4240634812099727748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -50,6 +50,7 @@ MonoBehaviour:
   ballSprite: {fileID: 2394809298345634440}
   ownerPaddle: {fileID: 0}
   collisionEffect: {fileID: 7698169178516273621, guid: 3ca0c679b0e354a5fab2adfef3a76136, type: 3}
+  constantVelocity: 10
 --- !u!50 &3577983238529426550
 Rigidbody2D:
   serializedVersion: 4
@@ -122,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5271386714643661003}
   - component: {fileID: 1787907231840019023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BallSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
