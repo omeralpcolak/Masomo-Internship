@@ -12,6 +12,7 @@ public class PowerupHolder : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
+            SoundEffectManager.instance.PlaySoundEffect("powerUp", 0.2f);
             Instantiate(collisionEffect, collision.gameObject.transform);
             powerupIns = Instantiate(powerups[Random.Range(0,powerups.Count-1)], transform.position, Quaternion.identity);
             powerupIns.ActivatePowerup();

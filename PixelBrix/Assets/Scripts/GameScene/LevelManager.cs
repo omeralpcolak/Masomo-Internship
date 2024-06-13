@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
     {
         if(hp <= 0)
         {
+            hp = 0;
             NextWave();
         }
     }

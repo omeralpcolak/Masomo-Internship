@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerups:
   - {fileID: -6951113400851078728, guid: 3d478317a2c394416917a87efc0b547e, type: 3}
-  collisionEffect: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  collisionEffect: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
 --- !u!50 &4193048436810800582
 Rigidbody2D:
   serializedVersion: 4

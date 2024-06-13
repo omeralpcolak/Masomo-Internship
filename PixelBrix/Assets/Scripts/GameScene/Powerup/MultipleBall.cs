@@ -32,4 +32,13 @@ public class MultipleBall : Powerup
         ballClones.ForEach(x => Destroy(x.gameObject));
         Destroy(gameObject);
     }
+
+    public override void DestroyPowerup(bool _bool)
+    {
+        if(_bool || !_bool)
+        {
+            ballClones.ForEach(x => Destroy(x.gameObject));
+            Destroy(gameObject);
+        }
+    }
 }

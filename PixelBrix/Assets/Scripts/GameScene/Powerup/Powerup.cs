@@ -8,21 +8,16 @@ public class Powerup : MonoBehaviour
     private void Start()
     {
         LevelManager.OnNextWave += DeactivatePowerUp;
+        LevelManager.OnLevelComplete += DestroyPowerup;
     }
 
 
     private void OnDestroy()
     {
         LevelManager.OnNextWave -= DeactivatePowerUp;
+        LevelManager.OnLevelComplete -= DestroyPowerup;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Paddle"))
-        {
-            ActivatePowerup();
-        }
-    }
 
     public virtual void ActivatePowerup()
     {
@@ -33,4 +28,11 @@ public class Powerup : MonoBehaviour
     {
 
     }
+
+    public virtual void DestroyPowerup(bool _bool)
+    {
+
+    }
+
+    
 }

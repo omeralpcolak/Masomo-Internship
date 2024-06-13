@@ -7,7 +7,7 @@ using System.Linq;
 
 public class WaveController : MonoBehaviour
 {
-    public int hp;
+    public int hp => CheckHp();
     public List<Brick> bricks;
     public static Action<bool> OnWaveCreating;
 
@@ -53,6 +53,24 @@ public class WaveController : MonoBehaviour
         shakeSequence.Append(transform.DOMoveX(0.1f, 0.1f))
                      .Append(transform.DOMoveX(-0.1f, 0.1f))
                      .Append(transform.DOMoveX(0, 0.1f));
+    }
+
+    public int CheckHp()
+    {
+        int number = 0;
+        for(int i = 0; i< bricks.Count; i++)
+        {
+            if (bricks[i].gameObject.activeSelf == true)
+            {
+                number++;
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+        return number;
     }
 
     private void OnDestroy()

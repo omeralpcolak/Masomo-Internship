@@ -33,15 +33,11 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-
         if (collision.gameObject.CompareTag("Border"))
         {
             
             CameraShake.instance.Shake();
         }
-
-       
 
         if (collision.gameObject.CompareTag("Paddle") && posStatus == BallPosition.FREE)
         {
@@ -61,6 +57,7 @@ public class BallController : MonoBehaviour
             LevelManager.isLevelStart = false;
         }
     }
+    
     public void Init(PaddleController _owner)
     {
         ownerPaddle = _owner;
@@ -79,7 +76,6 @@ public class BallController : MonoBehaviour
 
     public void PositionState(BallPosition state)
     {
-        Debug.Log("Position state is called");
         switch (state)
         {
             case BallPosition.INITIAL:

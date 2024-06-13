@@ -40,7 +40,7 @@ public class GameSceneController : SceneController
     {
         SetUpComponents(this);
         OnSceneLoad();
-        characterLevel = GameData.selectedLevel;
+        //characterLevel = GameData.selectedLevel;
         paddle = Instantiate(paddlePrefab, paddlePrefab.transform.position, Quaternion.identity);
         paddle.gameObject.SetActive(false);
         Instantiate(characterLevel.levelManager);
@@ -86,7 +86,7 @@ public class GameSceneController : SceneController
             levelCompleteText.text = "DEFEAT";
         }
 
-        levelCompleteText.GetComponent<TextAnim>().SetTheText();
+        //levelCompleteText.GetComponent<TextAnim>().SetTheText();
 
     }
 
@@ -98,17 +98,20 @@ public class GameSceneController : SceneController
                 //if(CheckLevelContains())
                 characterImg.sprite = characterLevel.idleSprite;
                 dialogueTxt.text = characterLevel.dialogues[0];
+                startButton.onClick.RemoveAllListeners();
+                startButton.onClick.AddListener(() => OnStartButtonClick());
                 break;
             case DialogueStyle.WIN:
                 characterImg.sprite = characterLevel.evilSprite;
                 dialogueTxt.text = characterLevel.dialogues[1];
                 startButton.onClick.RemoveAllListeners();
+                startButton.onClick.RemoveListener(OnStartButtonClick);
                 startButton.onClick.AddListener(() => OnSceneChange(SceneType.SELECTLEVEL));
                 break;
             case DialogueStyle.DEFEATED:
                 characterImg.sprite = characterLevel.angrySprite;
                 dialogueTxt.text = characterLevel.dialogues[2];
-                //characterLevel.isLevelCompleted = true;
+                characterLevel.isLevelCompleted = true;
                 startButton.onClick.RemoveAllListeners();
                 startButton.onClick.AddListener(() => OnSceneChange(SceneType.SELECTLEVEL));
                 break;
@@ -121,8 +124,6 @@ public class GameSceneController : SceneController
             dialogueTxt.gameObject.SetActive(true);
             dialogueTxt.GetComponent<TextAnim>().SetTheText();
         });
-        
-
     }
 
 
@@ -145,7 +146,9 @@ public class GameSceneController : SceneController
 
     public void OnStartButtonClick()
     {
+        //There is a bug here!!!!
         LevelManager.isLevelStart = true;
+        Debug.Log("level start " + LevelManager.isLevelStart);
         DeactivateDialoguePanel();
         paddle.gameObject.SetActive(true);
     }

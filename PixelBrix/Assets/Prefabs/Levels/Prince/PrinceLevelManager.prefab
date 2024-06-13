@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - wavePrefab: {fileID: 3880837346657525574, guid: a339ed6d05df84118a3b684acbd28a88, type: 3}
   - wavePrefab: {fileID: 3752018647103055819, guid: 67514284f7b814bc0b0ea2004afa8e1e, type: 3}
+  - wavePrefab: {fileID: 3880837346657525574, guid: a339ed6d05df84118a3b684acbd28a88, type: 3}

@@ -8,13 +8,18 @@ public class Brick : MonoBehaviour
     [HideInInspector]public WaveController owner;
     public Vector3 finalPos;
     private BoxCollider2D col;
+
     public List<GameObject>effects;
     public List<Sprite> sprites;
+
     private int index;
+    private int hitCount = 0;
+
     public Sprite CurrentSprite => sprites[index];
     private SpriteRenderer spRenderer;
-    private int hitCount = 0;
+    
     public PowerupHolder powerupHolder;
+    
 
     public void Init(WaveController _owner)
     {
@@ -23,7 +28,7 @@ public class Brick : MonoBehaviour
         SetSprite();
         col = GetComponent<BoxCollider2D>();
         owner = _owner;
-        owner.hp += 1;
+        //owner.hp += 1;
         transform.parent = null;
         finalPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.parent = owner.transform;
@@ -32,25 +37,25 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))
+        
+        if (collision.gameObject.CompareTag("Ball")&& LevelManager.isLevelStart)
         {
-            
             InstantiateEffects(collision.contacts[0]);
             SoundEffectManager.instance.PlaySoundEffect("ballHit", 0.2f);
             owner.ShakeTheBricks();
             hitCount++;
             if (hitCount >= sprites.Count)
             {
-                CreateThePowerUpHolder();
                 col.enabled = false;
-                owner.hp -= 1;
-                FindAnyObjectByType<LevelManager>().CheckEligiableForNextLevel(owner.hp);
+                CreateThePowerUpHolder();
                 spRenderer.transform.DOMoveY(spRenderer.transform.position.y + 0.2f, 0.15f)
-                    .SetEase(Ease.InOutCubic).OnComplete(() => spRenderer.transform.DOScale(0, 0.15f).OnComplete(() => gameObject.SetActive(false)));
+                    .SetEase(Ease.InOutCubic).OnComplete(() => spRenderer.transform.DOScale(0, 0.15f).OnComplete(() =>
+                    {
+                        gameObject.SetActive(false);
+                    }));
             }
             else
-            {
-                
+            {   
                 index++;
                 SetSprite();
             }
@@ -59,7 +64,7 @@ public class Brick : MonoBehaviour
 
     private void CreateThePowerUpHolder()
     {
-        int possibility = 10;
+        int possibility = 100;
         int number = Random.Range(0, 100);
         if(number <= possibility)
         {
@@ -78,9 +83,17 @@ public class Brick : MonoBehaviour
         spRenderer.sprite = CurrentSprite;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        //Debug.Log(name + " " + owner.hp);
+        owner.CheckHp();
+
+        LevelManager levelManager = FindAnyObjectByType<LevelManager>();
+        if(levelManager != null)
+        {
+            levelManager.CheckEligiableForNextLevel(owner.hp);
+        }
+        else { return; }
+        Debug.Log("Current hp: " + owner.hp);
     }
 
 

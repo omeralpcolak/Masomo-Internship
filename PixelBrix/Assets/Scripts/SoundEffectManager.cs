@@ -6,34 +6,62 @@ using System;
 public class SoundEffectManager : MonoBehaviour
 {
     public static SoundEffectManager instance;
-    private AudioSource audioSource;
     public List<AudioClip> clips;
+    public int sourcesPerClip = 3;
 
-
+    private Dictionary<string, List<AudioSource>> audioSourcePools;
 
     private void Awake()
     {
         instance = this;
-        audioSource = GetComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        audioSource.loop = false;
-    }
 
+        audioSourcePools = new Dictionary<string, List<AudioSource>>();
+
+        foreach (AudioClip clip in clips)
+        {
+            List<AudioSource> audioSources = new List<AudioSource>();
+            for (int i = 0; i < sourcesPerClip; i++)
+            {
+                AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
+                newAudioSource.clip = clip;
+                newAudioSource.playOnAwake = false;
+                newAudioSource.loop = false;
+                audioSources.Add(newAudioSource);
+            }
+            audioSourcePools[clip.name] = audioSources;
+        }
+    }
 
     public void PlaySoundEffect(string clipName, float volume)
     {
-        audioSource.Stop();
-        audioSource.clip = null;
-        AudioClip soundEffect = clips.Find(c => c.name == clipName);
-        if(soundEffect != null)
+        if (audioSourcePools.ContainsKey(clipName))
         {
-            audioSource.clip = soundEffect;
-            audioSource.volume = volume;
-            audioSource.Play();
+            AudioSource audioSource = GetAvailableAudioSource(audioSourcePools[clipName]);
+            if (audioSource != null)
+            {
+                audioSource.volume = volume;
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.Log("No available audio source for clip: " + clipName);
+            }
         }
         else
         {
-            Debug.Log("Sound effect is not found!");
+            Debug.Log("Sound effect is not found: " + clipName);
         }
+    }
+
+    private AudioSource GetAvailableAudioSource(List<AudioSource> audioSources)
+    {
+        foreach (AudioSource source in audioSources)
+        {
+            if (!source.isPlaying)
+            {
+                return source;
+            }
+        }
+        return null;
     }
 }
