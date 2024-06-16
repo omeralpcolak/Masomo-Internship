@@ -62,7 +62,7 @@ public class GameSceneController : SceneController
 
     protected override void DuringFadeOut()
     {
-        
+        startButton.interactable = false;
     }
 
 
@@ -92,6 +92,8 @@ public class GameSceneController : SceneController
 
     public void ActivateDialoguePanel(DialogueStyle style)
     {
+        startButton.interactable = true;
+
         switch (style)
         {
             case DialogueStyle.INITIAL:
@@ -129,6 +131,7 @@ public class GameSceneController : SceneController
 
     public void DeactivateDialoguePanel()
     {
+        startButton.interactable = false;
         dialoguePanel.GetComponent<CanvasGroup>().DOFade(0, 1f).OnComplete(() =>
         {
             dialogueTxt.gameObject.SetActive(false);
