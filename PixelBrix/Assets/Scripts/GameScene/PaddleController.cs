@@ -32,6 +32,17 @@ public class PaddleController : MonoBehaviour
             transform.DOMove(clampPos, 0.1f)
                 .SetEase(Ease.Linear);
         }
+        else if (LevelManager.isLevelStart)
+        {
+            float move = Input.GetAxis("Horizontal");
+            float speed = 6f;
+            if (move != 0)
+            {
+                Vector3 newPosition = transform.position + new Vector3(move * speed * Time.deltaTime, 0, 0);
+                newPosition.x = Mathf.Clamp(newPosition.x, -10, 10);
+                transform.position = newPosition;
+            }
+        }
         else
         {
             paddleParticle.gameObject.SetActive(false);
